@@ -2,9 +2,9 @@ import collections
 
 #The donors that the patients prefer
 preferred_rankings_patients = {
-    'P1':     ['D1', 'D2', 'D3', 'D4'],
-    'P2':     ['D2', 'D1', 'D4', 'D3'],
-    'P3':    ['D2', 'D4', 'D3', 'D1'],
+    'P1':   ['D1', 'D2', 'D3', 'D4'],
+    'P2':   ['D2', 'D1', 'D4', 'D3'],
+    'P3':   ['D2', 'D4', 'D3', 'D1'],
     'P4':   ['D1', 'D2', 'D3', 'D4']
 }
 
@@ -12,8 +12,8 @@ preferred_rankings_patients = {
 preferred_rankings_donors = {
     'D1':    ['P1', 'P3', 'P2', 'P4'],
     'D2':    ['P1', 'P3', 'P4', 'P2'],
-    'D3':     ['P4', 'P2', 'P1', 'P3'],
-    'D4':      ['P1', 'P2', 'P4', 'P3']
+    'D3':    ['P4', 'P2', 'P1', 'P3'],
+    'D4':    ['P1', 'P2', 'P4', 'P3']
 }
 
 #Keep track of the patients and donors who match each other
@@ -32,7 +32,7 @@ def begin_matching(patient):
     '''Find the first free donor available to a patient at
         any given time'''
 
-    print("DEALING WITH %s"%(patient))
+    print("\nDEALING WITH %s\n"%(patient))
     for donor in preferred_rankings_patients[patient]:
 
         #Boolean for whether donor is already donating or not
@@ -53,7 +53,7 @@ def begin_matching(patient):
             potential_patient = preferred_rankings_donors[donor].index(patient)
 
             if (current_patient < potential_patient):
-                print('%s is already donating to %s..'%(donor, taken_match[0][0]))
+                print('%s is already donating to %s'%(donor, taken_match[0][0]))
             else:
                 print('%s patient is a better match than %s'%(patient, taken_match[0][0]))
                 print('Making %s free again.. and tentatively patient %s is taking blood from %s'%(taken_match[0][0], patient, donor))
@@ -79,6 +79,7 @@ def main():
     init_free_patients()
     print(free_patients)
     stable_matching()
+    print('\nThe finally matched set of patients and donors\n')
     print(tentative_partners)
 
 main()
